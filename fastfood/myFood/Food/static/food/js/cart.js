@@ -41,18 +41,3 @@ function removeItem(n) {
 
     shoppingCart();
 }
-
-function order() {
-    var test = "Ajax test";
-    var ur = "/food/orders";
-    var orderData = {};
-    orderData['test'] = test;
-    $.ajax({
-        url: ur,
-        type: "POST",
-        data: orderData,
-        success: function(data) {
-            console.log('The data was sent to the server');
-        }
-    })
-}

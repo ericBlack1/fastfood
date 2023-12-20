@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Pizza, Burger
+from django.contrib.auth.forms import UserCreationForm
+from django.views.decorators.csrf import csrf_exempt
 # Create your views here.
 
 def index(request):
@@ -30,3 +32,17 @@ def order(request):
         'active_link': 'order'
     }
     return render(request, 'food/order.html', context)
+
+def signup(request):
+    context = {}
+    if request.POST:
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')
+        else:
+            context['form'] = form
+    else:
+        form = UserCreationForm()
+        context['form'] = form
+    return render(request, 'food/signup.html', context)
