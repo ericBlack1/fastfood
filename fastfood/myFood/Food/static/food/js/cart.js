@@ -41,3 +41,20 @@ function removeItem(n) {
 
     shoppingCart();
 }
+
+var note = document.querySelector('#message');
+
+function order() {
+    var msg = note.value;
+    var ur = "/Food/orders";
+    var orderData = {};
+    orderData['note'] = msg;
+    $.ajax({
+        url: ur,
+        type: "POST",
+        data: orderData,
+        success: function(data) {
+            console.log('The data was sent');
+        }
+    })
+}
