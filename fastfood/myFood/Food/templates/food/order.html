@@ -6,7 +6,7 @@
 
 {% block content %}
 
-    <div class="container-fluid m-4">
+    <div class="container-fluid">
         {% if user.is_authenticated %}
             <h2>Welcome {{ user.username }}</h2>
         {% endif %}
@@ -31,7 +31,7 @@
             </div>
             <div class="col-md-5 mt-4">
                 <h2>Message</h2>
-                <textarea name="message" id="" cols="40" rows="5"></textarea>
+                <textarea name="message" id="message" cols="40" rows="5"></textarea>
                 {% if user.is_authenticated %}
                 <div class="ml-auto m-3">
                     <button type="submit" class="btn-success" onclick="order()">Submit</button>

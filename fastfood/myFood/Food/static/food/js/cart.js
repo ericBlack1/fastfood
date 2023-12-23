@@ -42,19 +42,27 @@ function removeItem(n) {
     shoppingCart();
 }
 
-var note = document.querySelector('#message');
+var note = document.querySelector('#message')
 
 function order() {
     var msg = note.value;
+    var orders = localStorage.getItem('orders');
+    var total = localStorage.getItem('total');
+
+
     var ur = "/Food/orders";
     var orderData = {};
+    orderData['orders'] = orders;
     orderData['note'] = msg;
+    orderData['bill'] = total;
     $.ajax({
         url: ur,
         type: "POST",
         data: orderData,
         success: function(data) {
-            console.log('The data was sent');
+            window.location.replace('/Food/success')
+            localStorage.setItem('orders', JSON.stringify([]));
+            localStorage.setItem('total', 0);
         }
     })
 }
